@@ -3,31 +3,29 @@
 #include "Piece.h"
 #include"Player.h"
 #include<vector>
+
+using namespace std;
+
 class Board
 {
 	friend class Player;
+	friend class Piece;
 protected:
 	Point P;
 	vector<Piece*> CP;
 	int BG;
 	bool Safe;
 public:
-	Board(int bg, Point p, vector<Piece*> cp, bool S = false) : BG(bg), P(p), Safe(S)		//for the move board
-	{
-		CP = cp;
-	}
-	Board()
-	{
-
-	}
-	void setPlayer(Player& P)		//for the home area
-	{
-		BG = P.Clr;
-		Safe = true;
-	}
+	Board();
+	Board(int bg, Point p, vector<Piece*> cp);
+	Board(Player& P);
+	void setPlayer(Player&);
+	void Draw();
+	void SetPoint(Point);
+	void MakeSafe();
 	int NPcs();
-	bool ValidPiece(Team T);
-	bool ValidPiece(Player T);
-
+	bool ValidPiece(Team T); //use loop to check through the vector array
+	bool ValidPiece(Player P);
+	bool IsSafe();
 };
 
