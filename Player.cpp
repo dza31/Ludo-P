@@ -1,12 +1,27 @@
 #include "Player.h"
-#include"Board.h"
-Player::Player(const string& N, int C, int NOP) :Name(N), Clr(C)
+
+Player::Player(string& N, int C, int NOP) : Name(N), Clr(C)
 {
-	Home = new Board[6];
-	for (int i{ 0 }; i < 6; i++)
+	Home = new Board(*this);	
+}
+
+Board& Player::operator[](int i)
+{
+	return Home[i];
+}
+
+int Player::CurrIndex(Piece* FP)
+{
+	for (int i = 0; i < 6; i++)
 	{
-		Home[i].setPlayer(*this);
+		if (this->Home[i] == FP)
+			return i;
 	}
-	Pcs = new Piece * [NOP];
+	return 0;
+}
+
+int Player::PiecesLeft()
+{
+	return 0;
 }
 
