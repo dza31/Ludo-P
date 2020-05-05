@@ -72,11 +72,14 @@ void LudoGame::GetInput(Point& S)
 
 void LudoGame::Print_Game() 
 {
+	
 	initwindow(1300, 800, "LUDO");
+	setfillstyle(SOLID_FILL, WHITE);
 	int R = 20, sx = 100,sy=60;
 	for (int i{ 0 }; i < 6; i++)		//for the extreme left upper
 	{
 		circle((i*R*2)+sx, 300, R);
+		floodfill((i * R * 2) + sx,300, WHITE);
 	}
 	for (int i{ 0 }; i < 6; i++)		//for the extreme left straight
 	{
